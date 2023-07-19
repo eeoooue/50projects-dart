@@ -238,6 +238,9 @@
   }
   var A = {JS_CONST: function JS_CONST() {
     },
+    LateError$fieldNI(fieldName) {
+      return new A.LateError("Field '" + fieldName + "' has not been initialized.");
+    },
     isToStringVisiting(object) {
       var t1, i;
       for (t1 = $.toStringVisiting.length, i = 0; i < t1; ++i)
@@ -2641,40 +2644,18 @@
     SvgElement: function SvgElement() {
     },
     main() {
-      var t2, panels, t3,
-        t1 = document;
-      t1.toString;
-      t2 = type$.Element;
-      A.checkTypeBound(t2, t2, "T", "querySelectorAll");
-      t1 = t1.querySelectorAll(".panel");
-      t1.toString;
-      t2 = type$._FrozenElementList_Element;
-      panels = new A._FrozenElementList(t1, t2);
-      for (t1 = new A.ListIterator(panels, panels.get$length(panels), t2._eval$1("ListIterator<ListBase.E>")), t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
-        t3 = t1._current;
-        A.armPanel(t3 == null ? t2._as(t3) : t3);
-      }
+      new A.Overseer().createPanels$0();
     },
-    deactivateAllPanels() {
-      var t2, panels, t3,
-        t1 = document;
-      t1.toString;
-      t2 = type$.Element;
-      A.checkTypeBound(t2, t2, "T", "querySelectorAll");
-      t1 = t1.querySelectorAll(".panel");
-      t1.toString;
-      t2 = type$._FrozenElementList_Element;
-      panels = new A._FrozenElementList(t1, t2);
-      for (t1 = new A.ListIterator(panels, panels.get$length(panels), t2._eval$1("ListIterator<ListBase.E>")), t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
-        t3 = t1._current;
-        J.get$classes$x(t3 == null ? t2._as(t3) : t3).remove$1(0, "active");
-      }
+    Overseer: function Overseer() {
     },
-    armPanel(panel) {
-      J._addEventListener$3$x(panel, "click", type$.nullable_dynamic_Function_Event._as(new A.armPanel_closure(panel)), null);
+    Panel: function Panel() {
+      this.__Panel_seer_A = this.__Panel_element_A = $;
     },
-    armPanel_closure: function armPanel_closure(t0) {
-      this.panel = t0;
+    Panel_addListener_closure: function Panel_addListener_closure(t0) {
+      this.$this = t0;
+    },
+    throwLateFieldNI(fieldName) {
+      return A.throwExpression(A.LateError$fieldNI(fieldName));
     },
     throwLateFieldADI(fieldName) {
       return A.throwExpression(new A.LateError("Field '" + fieldName + "' has been assigned during initialization."));
@@ -3876,11 +3857,63 @@
       return new A.AttributeClassSet(receiver);
     }
   };
-  A.armPanel_closure.prototype = {
+  A.Overseer.prototype = {
+    createPanels$0() {
+      var t2, t3, t4,
+        t1 = document;
+      t1.toString;
+      t2 = type$.Element;
+      A.checkTypeBound(t2, t2, "T", "querySelectorAll");
+      t1 = t1.querySelectorAll(".panel");
+      t1.toString;
+      t2 = type$._FrozenElementList_Element;
+      t1 = new A._FrozenElementList(t1, t2);
+      t1 = new A.ListIterator(t1, t1.get$length(t1), t2._eval$1("ListIterator<ListBase.E>"));
+      t2 = t2._eval$1("ListBase.E");
+      for (; t1.moveNext$0();) {
+        t3 = t1._current;
+        if (t3 == null)
+          t3 = t2._as(t3);
+        t4 = new A.Panel();
+        t4.__Panel_seer_A = this;
+        t4.__Panel_element_A = t3;
+        t4.addListener$0();
+      }
+    },
+    deactivateAllPanels$0() {
+      var t2, panels, t3,
+        t1 = document;
+      t1.toString;
+      t2 = type$.Element;
+      A.checkTypeBound(t2, t2, "T", "querySelectorAll");
+      t1 = t1.querySelectorAll(".panel");
+      t1.toString;
+      t2 = type$._FrozenElementList_Element;
+      panels = new A._FrozenElementList(t1, t2);
+      for (t1 = new A.ListIterator(panels, panels.get$length(panels), t2._eval$1("ListIterator<ListBase.E>")), t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
+        t3 = t1._current;
+        J.get$classes$x(t3 == null ? t2._as(t3) : t3).remove$1(0, "active");
+      }
+    }
+  };
+  A.Panel.prototype = {
+    addListener$0() {
+      var t1 = this.__Panel_element_A;
+      t1 === $ && A.throwLateFieldNI("element");
+      J._addEventListener$3$x(t1, "click", type$.nullable_dynamic_Function_Event._as(new A.Panel_addListener_closure(this)), null);
+    }
+  };
+  A.Panel_addListener_closure.prototype = {
     call$1($event) {
+      var t1, t2;
       type$.Event._as($event);
-      A.deactivateAllPanels();
-      J.get$classes$x(this.panel).add$1(0, "active");
+      t1 = this.$this;
+      t2 = t1.__Panel_seer_A;
+      t2 === $ && A.throwLateFieldNI("seer");
+      t2.deactivateAllPanels$0();
+      t1 = t1.__Panel_element_A;
+      t1 === $ && A.throwLateFieldNI("element");
+      J.get$classes$x(t1).add$1(0, "active");
     },
     $signature: 4
   };
@@ -3895,14 +3928,14 @@
       _inherit = hunkHelpers.inherit,
       _inheritMany = hunkHelpers.inheritMany;
     _inherit(A.Object, null);
-    _inheritMany(A.Object, [A.JS_CONST, J.Interceptor, J.ArrayIterator, A.Error, A.ListIterator, A.Closure, A.JSSyntaxRegExp, A.Rti, A._FunctionParameters, A._Type, A.SetBase, A._LinkedHashSetCell, A._LinkedHashSetIterator, A.ListBase, A._Exception, A.FormatException, A.Null, A.StringBuffer, A.ImmutableListMixin, A.FixedSizeListIterator]);
+    _inheritMany(A.Object, [A.JS_CONST, J.Interceptor, J.ArrayIterator, A.Error, A.ListIterator, A.Closure, A.JSSyntaxRegExp, A.Rti, A._FunctionParameters, A._Type, A.SetBase, A._LinkedHashSetCell, A._LinkedHashSetIterator, A.ListBase, A._Exception, A.FormatException, A.Null, A.StringBuffer, A.ImmutableListMixin, A.FixedSizeListIterator, A.Overseer, A.Panel]);
     _inheritMany(J.Interceptor, [J.JSBool, J.JSNull, J.JavaScriptObject, J.JSNumber, J.JSString]);
     _inheritMany(J.JavaScriptObject, [J.LegacyJavaScriptObject, J.JSArray, A.EventTarget, A.DomException, A.DomTokenList, A.Event, A._NodeList_JavaScriptObject_ListMixin, A.__NamedNodeMap_JavaScriptObject_ListMixin]);
     _inheritMany(J.LegacyJavaScriptObject, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction]);
     _inherit(J.JSUnmodifiableArray, J.JSArray);
     _inheritMany(J.JSNumber, [J.JSInt, J.JSNumNotInt]);
     _inheritMany(A.Error, [A.LateError, A._CyclicInitializationError, A.RuntimeError, A._Error, A.AssertionError, A.TypeError, A.ArgumentError, A.UnsupportedError, A.UnimplementedError, A.ConcurrentModificationError]);
-    _inheritMany(A.Closure, [A.Closure2Args, A.TearOffClosure, A.initHooks_closure, A.initHooks_closure1, A.CssClassSetImpl_add_closure, A.armPanel_closure]);
+    _inheritMany(A.Closure, [A.Closure2Args, A.TearOffClosure, A.initHooks_closure, A.initHooks_closure1, A.CssClassSetImpl_add_closure, A.Panel_addListener_closure]);
     _inheritMany(A.TearOffClosure, [A.StaticClosure, A.BoundClosure]);
     _inherit(A.initHooks_closure0, A.Closure2Args);
     _inherit(A._TypeError, A._Error);
