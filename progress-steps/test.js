@@ -2653,11 +2653,13 @@
     },
     PrevButton$(path) {
       var t1 = new A.PrevButton();
+      t1.PathButton$2(path, "prev");
       t1.PrevButton$1(path);
       return t1;
     },
     NextButton$(path) {
       var t1 = new A.NextButton();
+      t1.PathButton$2(path, "next");
       t1.NextButton$1(path);
       return t1;
     },
@@ -2670,12 +2672,16 @@
       this.currentActive = 1;
       this.__ProgressPath_nextBtn_A = this.__ProgressPath_prevBtn_A = $;
     },
+    PathButton: function PathButton() {
+    },
     PrevButton: function PrevButton() {
+      this.__PathButton_btnElement_A = $;
     },
     PrevButton_closure: function PrevButton_closure(t0) {
       this.path = t0;
     },
     NextButton: function NextButton() {
+      this.__PathButton_btnElement_A = $;
     },
     NextButton_closure: function NextButton_closure(t0) {
       this.path = t0;
@@ -2899,9 +2905,6 @@
           if (a0 >>> 0 === a0 && a0 < receiver.length)
             return receiver[a0];
       return J.getInterceptor$ax(receiver).$index(receiver, a0);
-    },
-    addEventListener$2$x(receiver, a0, a1) {
-      return J.getInterceptor$x(receiver).addEventListener$2(receiver, a0, a1);
     },
     toString$0$(receiver) {
       return J.getInterceptor$(receiver).toString$0(receiver);
@@ -3895,16 +3898,24 @@
   };
   A.ProgressPath.prototype = {
     move$1(change) {
-      var _this = this,
-        t1 = _this.currentActive += change;
-      if (t1 < 1)
-        t1 = _this.currentActive = 1;
-      if (t1 > 4)
-        _this.currentActive = 4;
+      var t2, _this = this,
+        t1 = document;
+      t1.toString;
+      t2 = type$.Element;
+      A.checkTypeBound(t2, t2, "T", "querySelectorAll");
+      t1 = t1.querySelectorAll(".circle");
+      t1.toString;
+      t2 = _this.currentActive += change;
+      if (t2 < 1)
+        t2 = _this.currentActive = 1;
+      t1 = t1.length;
+      if (t2 > t1)
+        _this.currentActive = t1;
       _this.update$0();
     },
     update$0() {
-      var t2, t3, circles, i, t4, t5, prev, next, progress, _this = this,
+      var t2, t3, circles, i, t4, t5, progress, _this = this,
+        _s10_ = "btnElement",
         t1 = document;
       t1.toString;
       t2 = type$.Element;
@@ -3923,40 +3934,48 @@
           t5.get$classes(t4).add$1(0, "active");
         ++i;
       }
-      _this.__ProgressPath_prevBtn_A === $ && A.throwLateFieldNI("prevBtn");
-      prev = t1.getElementById("prev");
-      t2 = type$.ButtonElement;
-      if (t2._is(prev))
-        prev.disabled = false;
-      _this.__ProgressPath_nextBtn_A === $ && A.throwLateFieldNI("nextBtn");
-      next = t1.getElementById("next");
-      if (t2._is(next))
-        next.disabled = false;
+      t2 = _this.__ProgressPath_prevBtn_A;
+      t2 === $ && A.throwLateFieldNI("prevBtn");
+      t2 = t2.__PathButton_btnElement_A;
+      t2 === $ && A.throwLateFieldNI(_s10_);
+      t2.disabled = false;
+      t2 = _this.__ProgressPath_nextBtn_A;
+      t2 === $ && A.throwLateFieldNI("nextBtn");
+      t2 = t2.__PathButton_btnElement_A;
+      t2 === $ && A.throwLateFieldNI(_s10_);
+      t2.disabled = false;
       if (_this.currentActive === 1) {
-        prev = t1.getElementById("prev");
-        if (t2._is(prev))
-          prev.disabled = true;
+        t2 = _this.__ProgressPath_prevBtn_A.__PathButton_btnElement_A;
+        t2 === $ && A.throwLateFieldNI(_s10_);
+        t2.disabled = true;
       }
-      t3 = circles._nodeList;
-      if (_this.currentActive === t3.length) {
-        next = t1.getElementById("next");
-        if (t2._is(next))
-          next.disabled = true;
+      t2 = circles._nodeList;
+      if (_this.currentActive === t2.length) {
+        t3 = _this.__ProgressPath_nextBtn_A.__PathButton_btnElement_A;
+        t3 === $ && A.throwLateFieldNI(_s10_);
+        t3.disabled = true;
       }
-      t2 = _this.currentActive;
-      t3 = t3.length;
+      t3 = _this.currentActive;
+      t2 = t2.length;
       progress = t1.getElementById("progress");
       if (progress != null) {
         t1 = progress.style;
-        t1.width = A.S((t2 - 1) / (t3 - 1) * 100) + "%";
+        t1.width = A.S((t3 - 1) / (t2 - 1) * 100) + "%";
       }
+    }
+  };
+  A.PathButton.prototype = {
+    PathButton$2(path, identifier) {
+      var element = document.getElementById(identifier);
+      if (type$.ButtonElement._is(element))
+        this.__PathButton_btnElement_A = element;
     }
   };
   A.PrevButton.prototype = {
     PrevButton$1(path) {
-      var prev = document.getElementById("prev");
-      if (prev != null)
-        J.addEventListener$2$x(prev, "click", new A.PrevButton_closure(path));
+      var t1 = this.__PathButton_btnElement_A;
+      t1 === $ && A.throwLateFieldNI("btnElement");
+      B.ButtonElement_methods.addEventListener$2(t1, "click", new A.PrevButton_closure(path));
     }
   };
   A.PrevButton_closure.prototype = {
@@ -3968,9 +3987,9 @@
   };
   A.NextButton.prototype = {
     NextButton$1(path) {
-      var next = document.getElementById("next");
-      if (next != null)
-        J.addEventListener$2$x(next, "click", new A.NextButton_closure(path));
+      var t1 = this.__PathButton_btnElement_A;
+      t1 === $ && A.throwLateFieldNI("btnElement");
+      B.ButtonElement_methods.addEventListener$2(t1, "click", new A.NextButton_closure(path));
     }
   };
   A.NextButton_closure.prototype = {
@@ -3991,7 +4010,7 @@
       _inherit = hunkHelpers.inherit,
       _inheritMany = hunkHelpers.inheritMany;
     _inherit(A.Object, null);
-    _inheritMany(A.Object, [A.JS_CONST, J.Interceptor, J.ArrayIterator, A.Error, A.ListIterator, A.Closure, A.JSSyntaxRegExp, A.Rti, A._FunctionParameters, A._Type, A.SetBase, A._LinkedHashSetCell, A._LinkedHashSetIterator, A.ListBase, A._Exception, A.FormatException, A.Null, A.StringBuffer, A.CssStyleDeclarationBase, A.ImmutableListMixin, A.FixedSizeListIterator, A.ProgressPath, A.PrevButton, A.NextButton]);
+    _inheritMany(A.Object, [A.JS_CONST, J.Interceptor, J.ArrayIterator, A.Error, A.ListIterator, A.Closure, A.JSSyntaxRegExp, A.Rti, A._FunctionParameters, A._Type, A.SetBase, A._LinkedHashSetCell, A._LinkedHashSetIterator, A.ListBase, A._Exception, A.FormatException, A.Null, A.StringBuffer, A.CssStyleDeclarationBase, A.ImmutableListMixin, A.FixedSizeListIterator, A.ProgressPath, A.PathButton]);
     _inheritMany(J.Interceptor, [J.JSBool, J.JSNull, J.JavaScriptObject, J.JSNumber, J.JSString]);
     _inheritMany(J.JavaScriptObject, [J.LegacyJavaScriptObject, J.JSArray, A.EventTarget, A._CssStyleDeclaration_JavaScriptObject_CssStyleDeclarationBase, A.DomException, A.DomTokenList, A.Event, A._NodeList_JavaScriptObject_ListMixin, A.__NamedNodeMap_JavaScriptObject_ListMixin]);
     _inheritMany(J.LegacyJavaScriptObject, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction]);
@@ -4016,6 +4035,7 @@
     _inherit(A.__NamedNodeMap_JavaScriptObject_ListMixin_ImmutableListMixin, A.__NamedNodeMap_JavaScriptObject_ListMixin);
     _inherit(A._NamedNodeMap, A.__NamedNodeMap_JavaScriptObject_ListMixin_ImmutableListMixin);
     _inheritMany(A.CssClassSetImpl, [A._ElementCssClassSet, A.AttributeClassSet]);
+    _inheritMany(A.PathButton, [A.PrevButton, A.NextButton]);
     _mixin(A._CssStyleDeclaration_JavaScriptObject_CssStyleDeclarationBase, A.CssStyleDeclarationBase);
     _mixin(A._NodeList_JavaScriptObject_ListMixin, A.ListBase);
     _mixin(A._NodeList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
@@ -4067,6 +4087,7 @@
     };
   })();
   (function constants() {
+    B.ButtonElement_methods = A.ButtonElement.prototype;
     B.Interceptor_methods = J.Interceptor.prototype;
     B.JSArray_methods = J.JSArray.prototype;
     B.JSString_methods = J.JSString.prototype;

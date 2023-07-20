@@ -11,14 +11,14 @@ class ProgressPath {
   }
 
   void move(int change) {
+    var circles = document.querySelectorAll('.circle');
+
     currentActive += change;
 
     if (currentActive < 1) {
       currentActive = 1;
-    }
-
-    if (currentActive > 4) {
-      currentActive = 4;
+    } else if (currentActive > circles.length) {
+      currentActive = circles.length;
     }
 
     update();
@@ -56,53 +56,38 @@ class ProgressPath {
   }
 }
 
-class PrevButton {
-  PrevButton(ProgressPath path) {
-    var prev = document.getElementById('prev');
-    prev?.addEventListener("click", (event) => path.move(-1));
+class PathButton {
+  late ProgressPath path;
+  late ButtonElement btnElement;
+
+  PathButton(ProgressPath path, String identifier) {
+    this.path = path;
+
+    Element? element = document.getElementById(identifier);
+    if (element is ButtonElement) {
+      ButtonElement btn = element;
+      this.btnElement = btn;
+    }
   }
 
   void enable() {
-    Element? prev = document.getElementById('prev');
-
-    if (prev is ButtonElement) {
-      ButtonElement btn = prev;
-      btn.disabled = false;
-    }
+    this.btnElement.disabled = false;
   }
 
   void disable() {
-    Element? prev = document.getElementById('prev');
-
-    if (prev is ButtonElement) {
-      ButtonElement btn = prev;
-      btn.disabled = true;
-    }
+    this.btnElement.disabled = true;
   }
 }
 
-class NextButton {
-  NextButton(ProgressPath path) {
-    var next = document.getElementById('next');
-    next?.addEventListener("click", (event) => path.move(1));
+class PrevButton extends PathButton {
+  PrevButton(ProgressPath path) : super(path, 'prev') {
+    this.btnElement.addEventListener("click", (event) => path.move(-1));
   }
+}
 
-  void enable() {
-    Element? next = document.getElementById('next');
-
-    if (next is ButtonElement) {
-      ButtonElement btn = next;
-      btn.disabled = false;
-    }
-  }
-
-  void disable() {
-    Element? next = document.getElementById('next');
-
-    if (next is ButtonElement) {
-      ButtonElement btn = next;
-      btn.disabled = true;
-    }
+class NextButton extends PathButton {
+  NextButton(ProgressPath path) : super(path, 'next') {
+    this.btnElement.addEventListener("click", (event) => path.move(1));
   }
 }
 
