@@ -3907,10 +3907,12 @@
       t1.toString;
       t2 = _this.currentActive += change;
       if (t2 < 1)
-        t2 = _this.currentActive = 1;
-      t1 = t1.length;
-      if (t2 > t1)
-        _this.currentActive = t1;
+        _this.currentActive = 1;
+      else {
+        t1 = t1.length;
+        if (t2 > t1)
+          _this.currentActive = t1;
+      }
       _this.update$0();
     },
     update$0() {
@@ -4289,4 +4291,4 @@
   });
 })();
 
-//# sourceMappingURL=test.js.map
+//# sourceMappingURL=script.js.map
