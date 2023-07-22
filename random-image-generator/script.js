@@ -246,7 +246,7 @@
       return false;
     },
     LateError: function LateError(t0) {
-      this._message = t0;
+      this.__internal$_message = t0;
     },
     ListIterator: function ListIterator(t0, t1, t2) {
       var _ = this;
@@ -2362,7 +2362,7 @@
     _Error: function _Error() {
     },
     _TypeError: function _TypeError(t0) {
-      this.__rti$_message = t0;
+      this._message = t0;
     },
     ListBase: function ListBase() {
     },
@@ -2664,22 +2664,22 @@
     },
     SvgElement: function SvgElement() {
     },
-    throwLateFieldADI(fieldName) {
-      return A.throwExpression(new A.LateError("Field '" + fieldName + "' has been assigned during initialization."));
-    },
     main() {
-      var t2, t3, i, img, t4,
-        t1 = document,
-        container = t1.querySelector(".container");
-      for (t2 = type$.ImageElement, t3 = container == null, i = 0; i < 15; ++i) {
-        img = t1.createElement("img");
-        if (t2._is(img)) {
-          t4 = B.C__JSRandom.nextInt$1(10);
-          B.ImageElement_methods.set$src(img, "https://source.unsplash.com/random/" + ("" + (t4 + 300) + "x" + (B.C__JSRandom.nextInt$1(10) + 300)));
-          if (!t3)
-            J.get$children$x(container).add$1(0, img);
+      var unsplash, t1, i, img,
+        container = document.querySelector(".container");
+      if (container != null) {
+        unsplash = new A.UnsplashFacade(B.C__JSRandom);
+        for (t1 = J.getInterceptor$x(container), i = 0; i < 15; ++i) {
+          img = unsplash.getRandomImage$0();
+          t1.get$children(container).add$1(0, img);
         }
       }
+    },
+    UnsplashFacade: function UnsplashFacade(t0) {
+      this.randomizer = t0;
+    },
+    throwLateFieldADI(fieldName) {
+      return A.throwExpression(new A.LateError("Field '" + fieldName + "' has been assigned during initialization."));
     }
   },
   J = {
@@ -2809,9 +2809,6 @@
       if (receiver instanceof A.Object)
         return receiver;
       return J.getNativeInterceptor(receiver);
-    },
-    get$children$x(receiver) {
-      return J.getInterceptor$x(receiver).get$children(receiver);
     },
     get$iterator$ax(receiver) {
       return J.getInterceptor$ax(receiver).get$iterator(receiver);
@@ -3015,7 +3012,7 @@
   };
   A.LateError.prototype = {
     toString$0(_) {
-      return "LateInitializationError: " + this._message;
+      return "LateInitializationError: " + this.__internal$_message;
     }
   };
   A.ListIterator.prototype = {
@@ -3173,7 +3170,7 @@
   };
   A._Error.prototype = {
     toString$0(_) {
-      return this.__rti$_message;
+      return this._message;
     }
   };
   A._TypeError.prototype = {};
@@ -3567,11 +3564,24 @@
       if (max <= 0 || max > 4294967296)
         throw A.wrapException(A.RangeError$("max must be in range 0 < max \u2264 2^32, was " + max));
       return Math.random() * max >>> 0;
-    }
+    },
+    $isRandom: 1
   };
   A.SvgElement.prototype = {
     get$children(receiver) {
       return new A.FilteredElementList(new A._ChildNodeListLazy(receiver));
+    }
+  };
+  A.UnsplashFacade.prototype = {
+    getRandomImage$0() {
+      var t1,
+        img = document.createElement("img");
+      if (type$.ImageElement._is(img)) {
+        t1 = this.randomizer;
+        B.ImageElement_methods.set$src(img, "https://source.unsplash.com/random/" + ("" + (t1.nextInt$1(10) + 300) + "x" + (t1.nextInt$1(10) + 300)));
+        return img;
+      }
+      return this.getRandomImage$0();
     }
   };
   (function aliases() {
@@ -3585,7 +3595,7 @@
       _inherit = hunkHelpers.inherit,
       _inheritMany = hunkHelpers.inheritMany;
     _inherit(A.Object, null);
-    _inheritMany(A.Object, [A.JS_CONST, J.Interceptor, J.ArrayIterator, A.Error, A.ListIterator, A.Iterable, A.MappedIterator, A.WhereIterator, A.Closure, A.Rti, A._FunctionParameters, A._Type, A.ListBase, A.Null, A.StringBuffer, A.ImmutableListMixin, A.FixedSizeListIterator, A._JSRandom]);
+    _inheritMany(A.Object, [A.JS_CONST, J.Interceptor, J.ArrayIterator, A.Error, A.ListIterator, A.Iterable, A.MappedIterator, A.WhereIterator, A.Closure, A.Rti, A._FunctionParameters, A._Type, A.ListBase, A.Null, A.StringBuffer, A.ImmutableListMixin, A.FixedSizeListIterator, A._JSRandom, A.UnsplashFacade]);
     _inheritMany(J.Interceptor, [J.JSBool, J.JSNull, J.JavaScriptObject, J.JSNumber, J.JSString]);
     _inheritMany(J.JavaScriptObject, [J.LegacyJavaScriptObject, J.JSArray, A.EventTarget, A.DomException, A._HtmlCollection_JavaScriptObject_ListMixin, A._NodeList_JavaScriptObject_ListMixin]);
     _inheritMany(J.LegacyJavaScriptObject, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction]);
@@ -3622,7 +3632,7 @@
     leafTags: null,
     arrayRti: Symbol("$ti")
   };
-  A._Universe_addRules(init.typeUniverse, JSON.parse('{"PlainJavaScriptObject":"LegacyJavaScriptObject","UnknownJavaScriptObject":"LegacyJavaScriptObject","JavaScriptFunction":"LegacyJavaScriptObject","AElement":"SvgElement","GraphicsElement":"SvgElement","AudioElement":"HtmlElement","MediaElement":"HtmlElement","HtmlDocument":"Node","Document":"Node","CDataSection":"CharacterData","Text":"CharacterData","MathMLElement":"Element","HtmlFormControlsCollection":"HtmlCollection","JSBool":{"bool":[],"TrustedGetRuntimeType":[]},"JSNull":{"TrustedGetRuntimeType":[]},"JSArray":{"List":["1"],"Iterable":["1"]},"JSUnmodifiableArray":{"JSArray":["1"],"List":["1"],"Iterable":["1"]},"ArrayIterator":{"Iterator":["1"]},"JSNumber":{"num":[]},"JSInt":{"int":[],"num":[],"TrustedGetRuntimeType":[]},"JSNumNotInt":{"num":[],"TrustedGetRuntimeType":[]},"JSString":{"String":[],"TrustedGetRuntimeType":[]},"ListIterator":{"Iterator":["1"]},"MappedIterable":{"Iterable":["2"]},"MappedIterator":{"Iterator":["2"]},"WhereIterable":{"Iterable":["1"]},"WhereIterator":{"Iterator":["1"]},"ListBase":{"List":["1"],"Iterable":["1"]},"Element":{"Node":[]},"HtmlElement":{"Element":[],"Node":[]},"AnchorElement":{"Element":[],"Node":[]},"AreaElement":{"Element":[],"Node":[]},"CharacterData":{"Node":[]},"_ChildrenElementList":{"ListBase":["Element"],"List":["Element"],"Iterable":["Element"],"ListBase.E":"Element"},"FormElement":{"Element":[],"Node":[]},"HtmlCollection":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"Iterable":["Node"],"ListBase.E":"Node","ImmutableListMixin.E":"Node"},"ImageElement":{"Element":[],"Node":[]},"_ChildNodeListLazy":{"ListBase":["Node"],"List":["Node"],"Iterable":["Node"],"ListBase.E":"Node"},"NodeList":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"Iterable":["Node"],"ListBase.E":"Node","ImmutableListMixin.E":"Node"},"SelectElement":{"Element":[],"Node":[]},"FixedSizeListIterator":{"Iterator":["1"]},"FilteredElementList":{"ListBase":["Element"],"List":["Element"],"Iterable":["Element"],"ListBase.E":"Element"},"SvgElement":{"Element":[],"Node":[]}}'));
+  A._Universe_addRules(init.typeUniverse, JSON.parse('{"PlainJavaScriptObject":"LegacyJavaScriptObject","UnknownJavaScriptObject":"LegacyJavaScriptObject","JavaScriptFunction":"LegacyJavaScriptObject","AElement":"SvgElement","GraphicsElement":"SvgElement","AudioElement":"HtmlElement","MediaElement":"HtmlElement","HtmlDocument":"Node","Document":"Node","CDataSection":"CharacterData","Text":"CharacterData","MathMLElement":"Element","HtmlFormControlsCollection":"HtmlCollection","JSBool":{"bool":[],"TrustedGetRuntimeType":[]},"JSNull":{"TrustedGetRuntimeType":[]},"JSArray":{"List":["1"],"Iterable":["1"]},"JSUnmodifiableArray":{"JSArray":["1"],"List":["1"],"Iterable":["1"]},"ArrayIterator":{"Iterator":["1"]},"JSNumber":{"num":[]},"JSInt":{"int":[],"num":[],"TrustedGetRuntimeType":[]},"JSNumNotInt":{"num":[],"TrustedGetRuntimeType":[]},"JSString":{"String":[],"TrustedGetRuntimeType":[]},"ListIterator":{"Iterator":["1"]},"MappedIterable":{"Iterable":["2"]},"MappedIterator":{"Iterator":["2"]},"WhereIterable":{"Iterable":["1"]},"WhereIterator":{"Iterator":["1"]},"ListBase":{"List":["1"],"Iterable":["1"]},"Element":{"Node":[]},"HtmlElement":{"Element":[],"Node":[]},"AnchorElement":{"Element":[],"Node":[]},"AreaElement":{"Element":[],"Node":[]},"CharacterData":{"Node":[]},"_ChildrenElementList":{"ListBase":["Element"],"List":["Element"],"Iterable":["Element"],"ListBase.E":"Element"},"FormElement":{"Element":[],"Node":[]},"HtmlCollection":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"Iterable":["Node"],"ListBase.E":"Node","ImmutableListMixin.E":"Node"},"ImageElement":{"Element":[],"Node":[]},"_ChildNodeListLazy":{"ListBase":["Node"],"List":["Node"],"Iterable":["Node"],"ListBase.E":"Node"},"NodeList":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"Iterable":["Node"],"ListBase.E":"Node","ImmutableListMixin.E":"Node"},"SelectElement":{"Element":[],"Node":[]},"FixedSizeListIterator":{"Iterator":["1"]},"FilteredElementList":{"ListBase":["Element"],"List":["Element"],"Iterable":["Element"],"ListBase.E":"Element"},"_JSRandom":{"Random":[]},"SvgElement":{"Element":[],"Node":[]}}'));
   var type$ = (function rtii() {
     var findType = A.findType;
     return {

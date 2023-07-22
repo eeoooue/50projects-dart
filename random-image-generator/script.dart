@@ -1,25 +1,39 @@
 import 'dart:html';
 import 'dart:math';
 
-void main() {
-  Element? container = document.querySelector('.container');
-  String unsplashURL = 'https://source.unsplash.com/random/';
+class UnsplashFacade {
+  final String unsplashURL = 'https://source.unsplash.com/random/';
+  final Random randomizer = Random();
 
-  int rowCount = 5;
-  for (int i = 0; i < rowCount * 3; i++) {
+  ImageElement getRandomImage() {
     Element img = document.createElement('img');
     if (img is ImageElement) {
       img.src = "${unsplashURL}${getRandomSize()}";
-      container?.children.add(img);
+      return img;
     }
+
+    return getRandomImage();
+  }
+
+  String getRandomSize() {
+    return "${getRandomLength()}x${getRandomLength()}";
+  }
+
+  int getRandomLength() {
+    return randomizer.nextInt(10) + 300;
   }
 }
 
-String getRandomSize() {
-  return "${getRandomLength()}x${getRandomLength()}";
-}
+void main() {
+  Element? container = document.querySelector('.container');
 
-int getRandomLength() {
-  Random randomizer = Random();
-  return randomizer.nextInt(10) + 300;
+  if (container != null) {
+    final unsplash = UnsplashFacade();
+
+    int rowCount = 5;
+    for (int i = 0; i < rowCount * 3; i++) {
+      Element img = unsplash.getRandomImage();
+      container.children.add(img);
+    }
+  }
 }
