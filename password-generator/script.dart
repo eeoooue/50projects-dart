@@ -59,19 +59,29 @@ void main() {
 }
 
 bool includeLowercase() {
-  return true;
+  return checkCheckboxOfClass('lowercase');
 }
 
 bool includeUppercase() {
-  return true;
+  return checkCheckboxOfClass('uppercase');
 }
 
 bool includeDigit() {
-  return true;
+  return checkCheckboxOfClass('numbers');
 }
 
 bool includeSymbols() {
-  return true;
+  return checkCheckboxOfClass('symbols');
+}
+
+bool checkCheckboxOfClass(String classname) {
+  Element? element = document.getElementById(classname);
+
+  if (element is CheckboxInputElement) {
+    return element.checked == true;
+  }
+
+  return false;
 }
 
 String generatePassword(int length) {
