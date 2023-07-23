@@ -5056,15 +5056,17 @@
       J._addEventListener$3$x(this.element, "click", type$.nullable_dynamic_Function_Event._as(new A.SocialElement_closure(this)), null);
     },
     processMouseClick$1($event) {
-      var _this = this,
+      var difference, _this = this,
         t1 = Date.now(),
         t2 = _this.clickTime;
-      if (t2 !== 0)
-        if (t1 - t2 < 800) {
+      if (t2 !== 0) {
+        difference = t1 - t2;
+        if (150 < difference && difference < 800) {
           _this.submitLikeEvent$1($event);
           _this.clickTime = 0;
           return;
         }
+      }
       _this.clickTime = t1;
     },
     submitLikeEvent$1($event) {

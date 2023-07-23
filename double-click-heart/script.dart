@@ -20,7 +20,8 @@ class SocialElement {
     int currentTime = DateTime.now().millisecondsSinceEpoch;
 
     if (clickTime != 0) {
-      if (currentTime - clickTime < 800) {
+      int difference = currentTime - clickTime;
+      if (150 < difference && difference < 800) {
         submitLikeEvent(event);
         clickTime = 0;
         return;
