@@ -34,7 +34,6 @@ class RandomHelper {
 
 void main() {
   var generateEl = document.getElementById('generate');
-  var clipboardEl = document.getElementById('clipboard');
   var resultEl = document.getElementById('result');
 
   var lengthEl = document.getElementById('length');
@@ -46,14 +45,6 @@ void main() {
       if (resultEl is Element) {
         resultEl.innerText = pass;
       }
-    }
-  });
-
-  clipboardEl?.addEventListener("click", (event) {
-    if (resultEl is Element) {
-      String pass = resultEl.innerText;
-      // navigator.clipboard.writeText(password);
-      window.alert('Password [ ${pass} ] needs to be copied to clipboard!');
     }
   });
 }
