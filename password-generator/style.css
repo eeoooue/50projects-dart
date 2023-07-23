@@ -46,22 +46,12 @@ h2 {
 
 .result-container #result {
   word-wrap: break-word;
-  max-width: calc(100% - 40px);
   overflow-y: scroll;
   height: 100%;
 }
 
 #result::-webkit-scrollbar {
   width: 1rem;
-}
-
-.result-container .btn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
 }
 
 .btn {
