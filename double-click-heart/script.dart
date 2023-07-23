@@ -17,7 +17,15 @@ class SocialElement {
   }
 
   void processMouseClick(MouseEvent event) {
-    submitLikeEvent(event);
+    int currentTime = DateTime.now().millisecondsSinceEpoch;
+
+    if (clickTime != 0) {
+      if (currentTime - clickTime < 800) {
+        submitLikeEvent(event);
+      }
+    }
+
+    clickTime = currentTime;
   }
 
   void submitLikeEvent(MouseEvent event) {
