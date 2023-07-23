@@ -22,6 +22,8 @@ class SocialElement {
     if (clickTime != 0) {
       if (currentTime - clickTime < 800) {
         submitLikeEvent(event);
+        clickTime = 0;
+        return;
       }
     }
 

@@ -5055,6 +5055,18 @@
     SocialElement$2(element, times) {
       J._addEventListener$3$x(this.element, "click", type$.nullable_dynamic_Function_Event._as(new A.SocialElement_closure(this)), null);
     },
+    processMouseClick$1($event) {
+      var _this = this,
+        t1 = Date.now(),
+        t2 = _this.clickTime;
+      if (t2 !== 0)
+        if (t1 - t2 < 800) {
+          _this.submitLikeEvent$1($event);
+          _this.clickTime = 0;
+          return;
+        }
+      _this.clickTime = t1;
+    },
     submitLikeEvent$1($event) {
       var t2, t3,
         heart = document.createElement("i"),
@@ -5077,17 +5089,9 @@
   };
   A.SocialElement_closure.prototype = {
     call$1($event) {
-      var t1, t2, t3;
       type$.Event._as($event);
-      if (type$.MouseEvent._is($event)) {
-        t1 = this.$this;
-        t2 = Date.now();
-        t3 = t1.clickTime;
-        if (t3 !== 0)
-          if (t2 - t3 < 800)
-            t1.submitLikeEvent$1($event);
-        t1.clickTime = t2;
-      }
+      if (type$.MouseEvent._is($event))
+        this.$this.processMouseClick$1($event);
     },
     $signature: 11
   };
