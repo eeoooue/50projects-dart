@@ -11,13 +11,21 @@ class SocialElement {
   SocialElement(this.element, this.times) {
     element.addEventListener("click", (event) {
       if (event is MouseEvent) {
-        Element heart = createHeart(event);
-        element.children.add(heart);
-        addClick();
-        new Timer(Duration(seconds: 1), () {
-          heart.remove();
-        });
+        processMouseClick(event);
       }
+    });
+  }
+
+  void processMouseClick(MouseEvent event) {
+    submitLikeEvent(event);
+  }
+
+  void submitLikeEvent(MouseEvent event) {
+    Element heart = createHeart(event);
+    element.children.add(heart);
+    addClick();
+    new Timer(Duration(seconds: 1), () {
+      heart.remove();
     });
   }
 
