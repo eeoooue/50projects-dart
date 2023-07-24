@@ -2856,9 +2856,6 @@
       }
       return string;
     },
-    Duration$(milliseconds, seconds) {
-      return new A.Duration(1000 * milliseconds + 1000000 * seconds);
-    },
     Error_safeToString(object) {
       if (typeof object == "number" || A._isBool(object) || object == null)
         return J.toString$0$(object);
@@ -3023,9 +3020,6 @@
       B.JSArray_methods.add$1(parts, penultimateString);
       B.JSArray_methods.add$1(parts, ultimateString);
     },
-    print(object) {
-      A.printString(object);
-    },
     Duration: function Duration(t0) {
       this._duration = t0;
     },
@@ -3160,8 +3154,6 @@
     CssClassSetImpl_add_closure: function CssClassSetImpl_add_closure(t0) {
       this.value = t0;
     },
-    CssClassSetImpl_clear_closure: function CssClassSetImpl_clear_closure() {
-    },
     FilteredElementList: function FilteredElementList(t0) {
       this._childNodes = t0;
     },
@@ -3173,11 +3165,6 @@
       this._element = t0;
     },
     SvgElement: function SvgElement() {
-    },
-    DragDropBox$(element) {
-      var t1 = new A.DragDropBox(element);
-      t1.DragDropBox$1(element);
-      return t1;
     },
     main() {
       var t2, t3, t4, empties, t5, fill,
@@ -3191,7 +3178,7 @@
       empties = new A._FrozenElementList(t3, t4);
       for (t3 = new A.ListIterator(empties, empties.get$length(empties), t4._eval$1("ListIterator<ListBase.E>")), t4 = t4._eval$1("ListBase.E"); t3.moveNext$0();) {
         t5 = t3._current;
-        A.DragDropBox$(t5 == null ? t4._as(t5) : t5);
+        new A.DragDropBox(t5 == null ? t4._as(t5) : t5).setupListeners$0();
       }
       fill = t1.querySelector(".fill");
       if (t2._is(fill)) {
@@ -3203,18 +3190,15 @@
     DragDropBox: function DragDropBox(t0) {
       this.element = t0;
     },
-    DragDropBox_closure: function DragDropBox_closure() {
+    DragDropBox_setupListeners_closure: function DragDropBox_setupListeners_closure() {
     },
-    DragDropBox_closure0: function DragDropBox_closure0(t0) {
+    DragDropBox_setupListeners_closure0: function DragDropBox_setupListeners_closure0(t0) {
       this.$this = t0;
     },
-    DragDropBox_closure1: function DragDropBox_closure1(t0) {
+    DragDropBox_setupListeners_closure1: function DragDropBox_setupListeners_closure1(t0) {
       this.$this = t0;
     },
-    DragDropBox_closure2: function DragDropBox_closure2(t0) {
-      this.$this = t0;
-    },
-    DragDropBox__closure: function DragDropBox__closure(t0) {
+    DragDropBox_setupListeners_closure2: function DragDropBox_setupListeners_closure2(t0) {
       this.$this = t0;
     },
     main_closure: function main_closure(t0) {
@@ -3225,21 +3209,6 @@
     },
     main_closure0: function main_closure0(t0) {
       this.fill = t0;
-    },
-    printString(string) {
-      if (typeof dartPrint == "function") {
-        dartPrint(string);
-        return;
-      }
-      if (typeof console == "object" && typeof console.log != "undefined") {
-        console.log(string);
-        return;
-      }
-      if (typeof print == "function") {
-        print(string);
-        return;
-      }
-      throw "Unable to print message: " + String(string);
     },
     throwLateFieldADI(fieldName) {
       return A.throwExpression(new A.LateError("Field '" + fieldName + "' has been assigned during initialization."));
@@ -3440,9 +3409,6 @@
       if (receiver instanceof A.Object)
         return receiver;
       return J.getNativeInterceptor(receiver);
-    },
-    get$children$x(receiver) {
-      return J.getInterceptor$x(receiver).get$children(receiver);
     },
     get$classes$x(receiver) {
       return J.getInterceptor$x(receiver).get$classes(receiver);
@@ -4089,7 +4055,7 @@
     call$0() {
       this.callback.call$0();
     },
-    $signature: 0
+    $signature: 1
   };
   A._AsyncCallbackEntry.prototype = {};
   A._Zone.prototype = {};
@@ -4101,7 +4067,7 @@
       A.checkNotNullable(t2, "stackTrace", type$.StackTrace);
       A.Error__throw(t1, t2);
     },
-    $signature: 0
+    $signature: 1
   };
   A._RootZone.prototype = {
     runGuarded$1(f) {
@@ -4127,7 +4093,7 @@
     call$0() {
       return this.$this.runGuarded$1(this.f);
     },
-    $signature: 0
+    $signature: 1
   };
   A._LinkedHashSet.prototype = {
     get$iterator(_) {
@@ -4168,11 +4134,47 @@
       }
       return true;
     },
+    remove$1(_, object) {
+      var t1;
+      if (object !== "__proto__")
+        return this._removeHashTableEntry$2(this._strings, object);
+      else {
+        t1 = this._remove$1(object);
+        return t1;
+      }
+    },
+    _remove$1(object) {
+      var hash, bucket, index, cell, _this = this,
+        rest = _this._collection$_rest;
+      if (rest == null)
+        return false;
+      hash = _this._computeHashCode$1(object);
+      bucket = rest[hash];
+      index = _this._findBucketIndex$2(bucket, object);
+      if (index < 0)
+        return false;
+      cell = bucket.splice(index, 1)[0];
+      if (0 === bucket.length)
+        delete rest[hash];
+      _this._unlinkCell$1(cell);
+      return true;
+    },
     _addHashTableEntry$2(table, element) {
       A._instanceType(this)._precomputed1._as(element);
       if (type$.nullable__LinkedHashSetCell._as(table[element]) != null)
         return false;
       table[element] = this._newLinkedCell$1(element);
+      return true;
+    },
+    _removeHashTableEntry$2(table, element) {
+      var cell;
+      if (table == null)
+        return false;
+      cell = type$.nullable__LinkedHashSetCell._as(table[element]);
+      if (cell == null)
+        return false;
+      this._unlinkCell$1(cell);
+      delete table[element];
       return true;
     },
     _modified$0() {
@@ -4192,6 +4194,21 @@
       ++_this._collection$_length;
       _this._modified$0();
       return cell;
+    },
+    _unlinkCell$1(cell) {
+      var _this = this,
+        previous = cell._previous,
+        next = cell._next;
+      if (previous == null)
+        _this._first = next;
+      else
+        previous._next = next;
+      if (next == null)
+        _this._last = previous;
+      else
+        next._previous = previous;
+      --_this._collection$_length;
+      _this._modified$0();
     },
     _computeHashCode$1(element) {
       return J.get$hashCode$(element) & 1073741823;
@@ -4725,15 +4742,19 @@
       t1.toString;
       return t1;
     },
-    clear$0(_) {
-      this._html$_element.className = "";
-    },
     add$1(_, value) {
       var list = this._html$_element.classList,
         t1 = list.contains(value);
       t1.toString;
       list.add(value);
       return !t1;
+    },
+    remove$1(_, value) {
+      var list = this._html$_element.classList,
+        t1 = list.contains(value);
+      t1.toString;
+      list.remove(value);
+      return t1;
     }
   };
   A.ImmutableListMixin.prototype = {
@@ -4788,24 +4809,24 @@
       return this.readClasses$0()._collection$_length;
     },
     add$1(_, value) {
-      var t1;
+      var t1, s, ret;
       this._validateToken$1(value);
-      t1 = this.modify$1(new A.CssClassSetImpl_add_closure(value));
-      return A._asBool(t1 == null ? false : t1);
+      t1 = type$.dynamic_Function_Set_String._as(new A.CssClassSetImpl_add_closure(value));
+      s = this.readClasses$0();
+      ret = t1.call$1(s);
+      this.writeClasses$1(s);
+      return A._asBool(ret == null ? false : ret);
+    },
+    remove$1(_, value) {
+      var s, result;
+      this._validateToken$1(value);
+      s = this.readClasses$0();
+      result = s.remove$1(0, value);
+      this.writeClasses$1(s);
+      return result;
     },
     elementAt$1(_, index) {
       return this.readClasses$0().elementAt$1(0, index);
-    },
-    clear$0(_) {
-      this.modify$1(new A.CssClassSetImpl_clear_closure());
-    },
-    modify$1(f) {
-      var s, ret;
-      type$.dynamic_Function_Set_String._as(f);
-      s = this.readClasses$0();
-      ret = f.call$1(s);
-      this.writeClasses$1(s);
-      return ret;
     }
   };
   A.CssClassSetImpl_add_closure.prototype = {
@@ -4813,18 +4834,6 @@
       return type$.Set_String._as(s).add$1(0, this.value);
     },
     $signature: 9
-  };
-  A.CssClassSetImpl_clear_closure.prototype = {
-    call$1(s) {
-      type$.Set_String._as(s);
-      if (s._collection$_length > 0) {
-        s._strings = s._nums = s._collection$_rest = s._first = s._last = null;
-        s._collection$_length = 0;
-        s._modified$0();
-      }
-      return null;
-    },
-    $signature: 10
   };
   A.FilteredElementList.prototype = {
     get$_html_common$_iterable() {
@@ -4851,13 +4860,13 @@
     call$1(n) {
       return type$.Element._is(type$.Node._as(n));
     },
-    $signature: 11
+    $signature: 10
   };
   A.FilteredElementList__iterable_closure0.prototype = {
     call$1(n) {
       return type$.Element._as(type$.Node._as(n));
     },
-    $signature: 12
+    $signature: 11
   };
   A.AttributeClassSet.prototype = {
     readClasses$0() {
@@ -4886,61 +4895,46 @@
     }
   };
   A.DragDropBox.prototype = {
-    DragDropBox$1(element) {
+    setupListeners$0() {
       var _this = this,
         t1 = _this.element,
         t2 = J.getInterceptor$x(t1);
-      t2.addEventListener$2(t1, "dragover", new A.DragDropBox_closure());
-      t2.addEventListener$2(t1, "dragenter", new A.DragDropBox_closure0(_this));
-      t2.addEventListener$2(t1, "dragleave", new A.DragDropBox_closure1(_this));
-      t2.addEventListener$2(t1, "drop", new A.DragDropBox_closure2(_this));
+      t2.addEventListener$2(t1, "dragover", new A.DragDropBox_setupListeners_closure());
+      t2.addEventListener$2(t1, "dragenter", new A.DragDropBox_setupListeners_closure0(_this));
+      t2.addEventListener$2(t1, "dragleave", new A.DragDropBox_setupListeners_closure1(_this));
+      t2.addEventListener$2(t1, "drop", new A.DragDropBox_setupListeners_closure2(_this));
     }
   };
-  A.DragDropBox_closure.prototype = {
+  A.DragDropBox_setupListeners_closure.prototype = {
     call$1($event) {
       type$.Event._as($event).preventDefault();
     },
-    $signature: 1
+    $signature: 0
   };
-  A.DragDropBox_closure0.prototype = {
+  A.DragDropBox_setupListeners_closure0.prototype = {
     call$1($event) {
       type$.Event._as($event).preventDefault();
       J.get$classes$x(this.$this.element).add$1(0, "hovered");
     },
-    $signature: 1
+    $signature: 0
   };
-  A.DragDropBox_closure1.prototype = {
+  A.DragDropBox_setupListeners_closure1.prototype = {
     call$1($event) {
-      var t1, t2;
+      type$.Event._as($event);
+      J.get$classes$x(this.$this.element).remove$1(0, "hovered");
+    },
+    $signature: 0
+  };
+  A.DragDropBox_setupListeners_closure2.prototype = {
+    call$1($event) {
+      var t1, t2, fill;
       type$.Event._as($event);
       t1 = this.$this.element;
       t2 = J.getInterceptor$x(t1);
-      t2.get$classes(t1).clear$0(0);
-      t2.get$classes(t1).add$1(0, "empty");
-    },
-    $signature: 1
-  };
-  A.DragDropBox_closure2.prototype = {
-    call$1($event) {
-      var t1, t2, t3;
-      type$.Event._as($event);
-      A.print("recorded a drop event");
-      t1 = this.$this;
-      t2 = t1.element;
-      t3 = J.getInterceptor$x(t2);
-      t3.get$classes(t2).clear$0(0);
-      t3.get$classes(t2).add$1(0, "empty");
-      A.Timer_Timer(A.Duration$(1, 0), new A.DragDropBox__closure(t1));
-    },
-    $signature: 1
-  };
-  A.DragDropBox__closure.prototype = {
-    call$0() {
-      var fill = document.querySelector(".fill");
-      if (type$.Element._is(fill)) {
-        J.get$children$x(this.$this.element).add$1(0, fill);
-        A.print("appended fill to box");
-      }
+      t2.get$classes(t1).remove$1(0, "hovered");
+      fill = document.querySelector(".fill");
+      if (type$.Element._is(fill))
+        t2.get$children(t1).add$1(0, fill);
     },
     $signature: 0
   };
@@ -4950,18 +4944,15 @@
       type$.Event._as($event);
       t1 = this.fill;
       J.get$classes$x(t1).add$1(0, "hold");
-      A.Timer_Timer(A.Duration$(0, 0), new A.main__closure(t1));
+      A.Timer_Timer(new A.Duration(0), new A.main__closure(t1));
     },
-    $signature: 1
+    $signature: 0
   };
   A.main__closure.prototype = {
     call$0() {
-      var t1 = this.fill,
-        t2 = J.getInterceptor$x(t1);
-      t2.get$classes(t1).clear$0(0);
-      t2.get$classes(t1).add$1(0, "invisible");
+      J.get$classes$x(this.fill).add$1(0, "invisible");
     },
-    $signature: 0
+    $signature: 1
   };
   A.main_closure0.prototype = {
     call$1($event) {
@@ -4969,11 +4960,10 @@
       type$.Event._as($event);
       t1 = this.fill;
       t2 = J.getInterceptor$x(t1);
-      t2.get$classes(t1).clear$0(0);
-      t2.get$classes(t1).add$1(0, "fill");
-      A.print("you finished dragging");
+      t2.get$classes(t1).remove$1(0, "hold");
+      t2.get$classes(t1).remove$1(0, "invisible");
     },
-    $signature: 1
+    $signature: 0
   };
   (function aliases() {
     var _ = J.Interceptor.prototype;
@@ -4987,7 +4977,7 @@
     _static_1(A, "async__AsyncRun__scheduleImmediateJsOverride$closure", "_AsyncRun__scheduleImmediateJsOverride", 2);
     _static_1(A, "async__AsyncRun__scheduleImmediateWithSetImmediate$closure", "_AsyncRun__scheduleImmediateWithSetImmediate", 2);
     _static_1(A, "async__AsyncRun__scheduleImmediateWithTimer$closure", "_AsyncRun__scheduleImmediateWithTimer", 2);
-    _static_0(A, "async___startMicrotaskLoop$closure", "_startMicrotaskLoop", 0);
+    _static_0(A, "async___startMicrotaskLoop$closure", "_startMicrotaskLoop", 1);
   })();
   (function inheritance() {
     var _mixin = hunkHelpers.mixin,
@@ -5003,12 +4993,12 @@
     _inheritMany(A.Error, [A.LateError, A.TypeError, A.JsNoSuchMethodError, A.UnknownJsTypeError, A._CyclicInitializationError, A.RuntimeError, A.AssertionError, A._Error, A.ArgumentError, A.UnsupportedError, A.UnimplementedError, A.ConcurrentModificationError]);
     _inheritMany(A.Iterable, [A.MappedIterable, A.WhereIterable]);
     _inherit(A.NullError, A.TypeError);
-    _inheritMany(A.Closure, [A.Closure0Args, A.Closure2Args, A.TearOffClosure, A.initHooks_closure, A.initHooks_closure1, A._AsyncRun__initializeScheduleImmediate_internalCallback, A._AsyncRun__initializeScheduleImmediate_closure, A.CssClassSetImpl_add_closure, A.CssClassSetImpl_clear_closure, A.FilteredElementList__iterable_closure, A.FilteredElementList__iterable_closure0, A.DragDropBox_closure, A.DragDropBox_closure0, A.DragDropBox_closure1, A.DragDropBox_closure2, A.main_closure, A.main_closure0]);
+    _inheritMany(A.Closure, [A.Closure0Args, A.Closure2Args, A.TearOffClosure, A.initHooks_closure, A.initHooks_closure1, A._AsyncRun__initializeScheduleImmediate_internalCallback, A._AsyncRun__initializeScheduleImmediate_closure, A.CssClassSetImpl_add_closure, A.FilteredElementList__iterable_closure, A.FilteredElementList__iterable_closure0, A.DragDropBox_setupListeners_closure, A.DragDropBox_setupListeners_closure0, A.DragDropBox_setupListeners_closure1, A.DragDropBox_setupListeners_closure2, A.main_closure, A.main_closure0]);
     _inheritMany(A.TearOffClosure, [A.StaticClosure, A.BoundClosure]);
     _inherit(A._AssertionError, A.AssertionError);
     _inherit(A.initHooks_closure0, A.Closure2Args);
     _inherit(A._TypeError, A._Error);
-    _inheritMany(A.Closure0Args, [A._AsyncRun__scheduleImmediateJsOverride_internalCallback, A._AsyncRun__scheduleImmediateWithSetImmediate_internalCallback, A._TimerImpl_internalCallback, A._rootHandleError_closure, A._RootZone_bindCallbackGuarded_closure, A.DragDropBox__closure, A.main__closure]);
+    _inheritMany(A.Closure0Args, [A._AsyncRun__scheduleImmediateJsOverride_internalCallback, A._AsyncRun__scheduleImmediateWithSetImmediate_internalCallback, A._TimerImpl_internalCallback, A._rootHandleError_closure, A._RootZone_bindCallbackGuarded_closure, A.main__closure]);
     _inherit(A._RootZone, A._Zone);
     _inheritMany(A.SetBase, [A._SetBase, A.CssClassSetImpl]);
     _inherit(A._LinkedHashSet, A._SetBase);
@@ -5036,7 +5026,7 @@
     typeUniverse: {eC: new Map(), tR: {}, eT: {}, tPV: {}, sEA: []},
     mangledGlobalNames: {int: "int", double: "double", num: "num", String: "String", bool: "bool", Null: "Null", List: "List"},
     mangledNames: {},
-    types: ["~()", "Null(Event)", "~(~())", "Null()", "@(@)", "@(@,String)", "@(String)", "Null(@)", "Null(~())", "bool(Set<String>)", "~(Set<String>)", "bool(Node)", "Element(Node)"],
+    types: ["Null(Event)", "~()", "~(~())", "Null()", "@(@)", "@(@,String)", "@(String)", "Null(@)", "Null(~())", "bool(Set<String>)", "bool(Node)", "Element(Node)"],
     interceptorsByTag: null,
     leafTags: null,
     arrayRti: Symbol("$ti")

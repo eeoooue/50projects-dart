@@ -4,6 +4,10 @@ import 'dart:async';
 class DragDropBox {
   Element element;
   DragDropBox(this.element) {
+    setupListeners();
+  }
+
+  void setupListeners() {
     element.addEventListener("dragover", (event) {
       event.preventDefault();
     });
@@ -12,22 +16,19 @@ class DragDropBox {
       element.classes.add("hovered");
     });
     element.addEventListener("dragleave", (event) {
-      element.classes.clear();
-      element.classes.add("empty");
+      element.classes.remove("hovered");
     });
     element.addEventListener("drop", (event) {
-      print("recorded a drop event");
-      element.classes.clear();
-      element.classes.add("empty");
-
-      Timer(Duration(milliseconds: 1), () {
-        var fill = document.querySelector('.fill');
-        if (fill is Element) {
-          element.children.add(fill);
-          print("appended fill to box");
-        }
-      });
+      element.classes.remove("hovered");
+      grabFill();
     });
+  }
+
+  void grabFill() {
+    Element? fill = document.querySelector('.fill');
+    if (fill is Element) {
+      element.children.add(fill);
+    }
   }
 }
 
@@ -43,15 +44,13 @@ void main() {
     fill.addEventListener("dragstart", (event) {
       fill.classes.add("hold");
       Timer(Duration(seconds: 0), () {
-        fill.classes.clear();
         fill.classes.add("invisible");
       });
     });
 
     fill.addEventListener("dragend", (event) {
-      fill.classes.clear();
-      fill.classes.add("fill");
-      print("you finished dragging");
+      fill.classes.remove("hold");
+      fill.classes.remove("invisible");
     });
   }
 }
