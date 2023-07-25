@@ -1,0 +1,10 @@
+name: dad_jokes_project
+description: Simple dad jokes project
+
+
+environment:
+  sdk: '^3.0.0'
+
+# Declare dependencies here
+dependencies:
+  http: ^0.13.3
