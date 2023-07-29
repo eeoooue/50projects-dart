@@ -7053,10 +7053,14 @@
               for (t2 = J.get$iterator$ax(results); t2.moveNext$0();) {
                 movie = t2.get$current();
                 t3 = J.getInterceptor$asx(movie);
-                title = A._asString(t3.$index(movie, "title"));
-                posterPath = A._asString(t3.$index(movie, "poster_path"));
-                score = A._asDouble(t3.$index(movie, "vote_average"));
-                overview = A._asString(t3.$index(movie, "overview"));
+                title = A._asStringQ(t3.$index(movie, "title"));
+                posterPath = A._asStringQ(t3.$index(movie, "poster_path"));
+                score = A._asDoubleQ(t3.$index(movie, "vote_average"));
+                overview = A._asStringQ(t3.$index(movie, "overview"));
+                if (title == null || posterPath == null)
+                  continue;
+                if (score == null || overview == null)
+                  continue;
                 card = new A.MovieCard(title, posterPath, score, overview);
                 card0 = document.createElement("div");
                 t3 = J.getInterceptor$x(card0);
