@@ -15,7 +15,7 @@ class AllowAll implements NodeValidator {
 }
 
 class PokePalette {
-  HashMap<String, String> colors = HashMap<String, String>.from({
+  HashMap<String, String> colours = HashMap<String, String>.from({
     "fire": '#FDDFDF',
     "grass": '#DEFDE0',
     "electric": '#FCF7DE',
@@ -33,13 +33,17 @@ class PokePalette {
   });
 
   String getColour(String type) {
-    String? result = colors[type];
+    String? result = colours[type];
 
     if (result != null) {
       return result;
     }
 
     return '#F5F5F5';
+  }
+
+  bool validType(String type) {
+    return colours.containsKey(type);
   }
 }
 
@@ -70,7 +74,14 @@ class Pokedex {
 
     String name = data['name'];
 
-    PokemonCard card = PokemonCard(id, name);
+    List<String> types = List.empty(growable: true);
+
+    for (dynamic type in data['types']) {
+      String typeName = type['type']['name'];
+      types.add(typeName);
+    }
+
+    PokemonCard card = PokemonCard(id, name, types);
     cards.add(card);
   }
 
@@ -86,8 +97,10 @@ class Pokedex {
 class PokemonCard {
   int id;
   String name;
+  List<String> types;
+  PokePalette palette = PokePalette();
 
-  PokemonCard(this.id, this.name) {}
+  PokemonCard(this.id, this.name, this.types) {}
 
   Element createElement() {
     Element card = document.createElement("div");
@@ -97,21 +110,47 @@ class PokemonCard {
     String imgUrlPrefix =
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 
-    String type = "typehere";
+    String type = "normal";
+
+    for (String option in types) {
+      if (palette.validType(option)) {
+        type = option;
+        break;
+      }
+    }
+
+    card.style.backgroundColor = palette.getColour(type);
 
     buffer.write('<div class="img-container">');
     buffer.write('<img src="${imgUrlPrefix}${id}.png"" alt="${name}">');
     buffer.write('</div>');
 
     buffer.write('<div class="info">');
-    buffer.write('<span class="number">#${id}</span>');
-    buffer.write('<h3 class="name">${name}</h3>');
+    buffer.write('<span class="number">${getIdString()}</span>');
+    buffer.write('<h3 class="name">${getTitle()}</h3>');
     buffer.write('<small class="type">Type: <span>${type}</span></small>');
     buffer.write('</div>');
 
     card.setInnerHtml(buffer.toString(), validator: AllowAll());
 
     return card;
+  }
+
+  String getTitle() {
+    String firstLetter = name[0].toUpperCase();
+    String suffix = name.substring(1);
+
+    return "${firstLetter}${suffix}";
+  }
+
+  String getIdString() {
+    String textForm = id.toString();
+
+    while (textForm.length < 3) {
+      textForm = "0" + textForm;
+    }
+
+    return "#${textForm}";
   }
 }
 
