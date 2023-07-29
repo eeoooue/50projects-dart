@@ -34,10 +34,18 @@ class MovieApp {
     cards.clear();
 
     for (dynamic movie in results) {
-      String title = movie["title"];
-      String posterPath = movie["poster_path"];
-      double score = movie["vote_average"];
-      String overview = movie["overview"];
+      String? title = movie["title"];
+      String? posterPath = movie["poster_path"];
+      double? score = movie["vote_average"];
+      String? overview = movie["overview"];
+
+      if (title == null || posterPath == null) {
+        continue;
+      }
+
+      if (score == null || overview == null) {
+        continue;
+      }
 
       MovieCard card = MovieCard(title, posterPath, score, overview);
       cards.add(card);
