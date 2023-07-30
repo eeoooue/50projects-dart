@@ -18,6 +18,7 @@ class ThemeClock {
   TimeKeeper keeper = TimeKeeper();
 
   ThemeClock() {
+    armToggle();
     Timer.periodic(Duration(seconds: 1), (timer) {
       updateAll();
     });
@@ -37,7 +38,34 @@ class ThemeClock {
   }
 
   void armToggle() {
-    // Element? toggle = document.querySelector('.toggle');
+    Element? toggle = document.querySelector('.toggle');
+
+    if (toggle is ButtonElement) {
+      ThemeToggle(toggle);
+    }
+  }
+}
+
+class ThemeToggle {
+  ButtonElement element;
+
+  ThemeToggle(this.element) {
+    element.addEventListener("click", (event) {
+      toggleTheme();
+    });
+  }
+
+  void toggleTheme() {
+    Element? html = document.querySelector('html');
+
+    if (html is Element) {
+      html.classes.toggle("dark");
+      if (html.classes.contains("dark")) {
+        element.innerText = "Light mode";
+      } else {
+        element.innerText = "Dark mode";
+      }
+    }
   }
 }
 
