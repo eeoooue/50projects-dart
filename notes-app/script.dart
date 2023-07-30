@@ -26,13 +26,10 @@ class Notebook {
   void initialize() {
     String? data = window.localStorage[key];
 
-    print("attempted to initialize: data = ${data}");
-
     if (data is String) {
       List<String> noteStrings = unpackStrings(data);
       for (String text in noteStrings) {
         createNote(text);
-        print("attempted to create note with seed = ${text}");
       }
     }
   }
@@ -50,18 +47,13 @@ class Notebook {
   }
 
   void update() {
-    print("notes is ${notes.length} long");
-
     List<String> noteStrings = List.empty(growable: true);
     for (NoteElement note in notes) {
       noteStrings.add(note.text);
-      print("added ${note.text} to the list");
     }
 
     String data = encodeList(noteStrings);
     window.localStorage[key] = data;
-
-    print("updated local storage");
   }
 
   String encodeList(List<String> strings) {
@@ -78,8 +70,6 @@ class Notebook {
   void createNote(String text) {
     var note = NoteElement(this, text);
     notes.add(note);
-
-    print("added note -- notes is ${notes.length} long");
     update();
   }
 
