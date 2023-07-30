@@ -141,7 +141,18 @@ class ClockDisplay extends TimeElement {
 
   ClockDisplay(this.hourEl, this.minuteEl, this.secondEl) {}
 
-  void update(TimeKeeper time) {}
+  void update(TimeKeeper time) {
+    hourEl.style.transform =
+        "translate(-50%, -100%) rotate(${scale(time.getClockHour(), 0, 12, 0, 360)}deg)";
+    minuteEl.style.transform =
+        "translate(-50%, -100%) rotate(${scale(time.minutes, 0, 60, 0, 360)}deg)";
+    secondEl.style.transform =
+        "translate(-50%, -100%) rotate(${scale(time.seconds, 0, 60, 0, 360)}deg)";
+  }
+
+  double scale(int num, int in_min, int in_max, int out_min, int out_max) {
+    return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+  }
 }
 
 void main() {
