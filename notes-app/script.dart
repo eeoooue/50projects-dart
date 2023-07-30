@@ -20,7 +20,7 @@ class Notebook {
 
   Notebook(this.addBtn) {
     initialize();
-    addBtn.addEventListener("click", (event) => createNote("testing"));
+    addBtn.addEventListener("click", (event) => createNote(""));
   }
 
   void initialize() {
@@ -98,6 +98,14 @@ class NoteElement {
     element.classes.add("note");
     setupElement();
     document.body?.children.add(element);
+
+    if (text.length == 0) {
+      var textArea = element.querySelector('textarea');
+
+      if (textArea is TextAreaElement) {
+        textArea.focus();
+      }
+    }
   }
 
   void updateText() {
@@ -127,18 +135,23 @@ class NoteElement {
   void setupElement() {
     StringBuffer buffer = StringBuffer();
 
+    // creates an editable note
+
     buffer.write('<div class="tools">');
     buffer.write('<button class="edit"><i class="fas fa-edit"></i></button>');
     buffer.write(
         '<button class="delete"><i class="fas fa-trash-alt"></i></button>');
     buffer.write('</div>');
-    buffer.write('<div class="main ${(text == "") ? "" : "hidden"}"></div>');
-    buffer
-        .write('<textarea class="${(text == "") ? "hidden" : ""}"></textarea>');
+    buffer.write('<div class="main hidden"></div>');
+    buffer.write('<textarea></textarea>');
 
     String newHtml = buffer.toString();
 
     element.setInnerHtml(newHtml, validator: AllowAll());
+
+    if (text.length > 0) {
+      toggleEditable();
+    }
 
     addBtns();
 
