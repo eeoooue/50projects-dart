@@ -1,64 +1,60 @@
-# 50 Projects in 50 Days - HTML/CSS and JavaScript
+# 50 Projects - HTML/CSS and Dart
 
-This is the main repository for all of the projects in the course.
+This is a dart fork of the [```50projects50days```](https://github.com/bradtraversy/50projects50days) repo by [@bradtraversy](https://github.com/bradtraversy).
 
--   [Course Link](https://www.udemy.com/course/50-projects-50-days)
--   [Course Info Website](https://50projects50days.com)
+|  #  | Project    | Live Demo      |
+| :-: | ----- | ----- |
+| 01  | [Expanding Cards](/expanding-cards/)                             | [Live Demo](https://eeoooue.github.io/50projects-dart/expanding-cards/)               |
+| 02  | [Progress Steps](/progress-steps/)                               | [Live Demo](https://eeoooue.github.io/50projects-dart/progress-steps/)                |
+| 03  | [Rotating Navigation Animation](/rotating-nav-animation/)                       | [Live Demo](https://eeoooue.github.io/50projects-dart/rotating-nav-animation/) |
+| 04  | [Hidden Search Widget](/hidden-search/)                          | [Live Demo](https://eeoooue.github.io/50projects-dart/hidden-search/)          |
+| 05  | [Blurry Loading](/blurry-loading/)                               | [Live Demo](https://eeoooue.github.io/50projects-dart/blurry-loading/)                |
+| 06  | [Scroll Animation](/scroll-animation/)                           | [Live Demo](https://eeoooue.github.io/50projects-dart/scroll-animation/)              |
+| 07  | [Split Landing Page](/split-landing-page/)                       | [Live Demo](https://eeoooue.github.io/50projects-dart/split-landing-page/)            |
+| 08  | [Form Wave](/form-input-wave/)                                         | [Live Demo](https://eeoooue.github.io/50projects-dart/form-input-wave/)                     |
+| 09  | [Sound Board](/sound-board/)                                     | [Live Demo](https://eeoooue.github.io/50projects-dart/sound-board/)                   |
+| 10  | [Dad Jokes](/dad-jokes/)                                         | [Live Demo](https://eeoooue.github.io/50projects-dart/dad-jokes/)                     |
+| 11  | [Event Keycodes](/event-keycodes/)                               | [Live Demo](https://eeoooue.github.io/50projects-dart/event-keycodes/)                |
+| 12  | [Faq Collapse](/faq-collapse/)                                   | [Live Demo](https://eeoooue.github.io/50projects-dart/faq-collapse/)                  |
+| 13  | [Random Choice Picker](/random-choice-picker/)                   | [Live Demo](https://eeoooue.github.io/50projects-dart/random-choice-picker/)          |
+| 14  | [Animated Navigation](/animated-navigation/)                     | [Live Demo](https://eeoooue.github.io/50projects-dart/animated-navigation/)           |
+| 15  | [Incrementing Counter](/incrementing-counter/)                   | [Live Demo](https://eeoooue.github.io/50projects-dart/incrementing-counter/)          |
+| 16  | [Drink Water](/drink-water/)                                     | [Live Demo](https://eeoooue.github.io/50projects-dart/drink-water/)                   |
+| 17  | [Movie App](/movie-app/)                                         | [Live Demo](https://eeoooue.github.io/50projects-dart/movie-app/)                     |
+| 18  | [Background Slider](/background-slider/)                         | [Live Demo](https://eeoooue.github.io/50projects-dart/background-slider/)             |
+| 19  | [Theme Clock](/theme-clock/)                                     | [Live Demo](https://eeoooue.github.io/50projects-dart/theme-clock/)                   |
+| 20  | [Button Ripple Effect](/button-ripple-effect/)                   | [Live Demo](https://eeoooue.github.io/50projects-dart/button-ripple-effect/)          |
+| 21  | [Drag N Drop](/drag-n-drop/)                                     | [Live Demo](https://eeoooue.github.io/50projects-dart/drag-n-drop/)                   |
+| 22  | [Drawing App](/drawing-app/)                                     | [Live Demo](https://eeoooue.github.io/50projects-dart/drawing-app/)                   |
+| 23  | [Kinetic Loader](/kinetic-loader/)                               | [Live Demo](https://eeoooue.github.io/50projects-dart/kinetic-loader/)                |
+| 24  | [Content Placeholder](/content-placeholder/)                     | [Live Demo](https://eeoooue.github.io/50projects-dart/content-placeholder/)           |
+| 25  | [Sticky Navbar](/sticky-navigation/)                                 | [Live Demo](https://eeoooue.github.io/50projects-dart/sticky-navigation/)                 |
+| 26  | [Double Vertical Slider](/double-vertical-slider/)               | [Live Demo](https://eeoooue.github.io/50projects-dart/double-vertical-slider/)        |
+| 27  | [Toast Notification](/toast-notification/)                       | [Live Demo](https://eeoooue.github.io/50projects-dart/toast-notification/)            |
+| 28  | [Github Profiles](/github-profiles/)                             | [Live Demo](https://eeoooue.github.io/50projects-dart/github-profiles/)               |
+| 29  | [Double Click Heart](/double-click-heart/)                       | [Live Demo](https://eeoooue.github.io/50projects-dart/double-click-heart/)            |
+| 30  | [Auto Text Effect](/auto-text-effect/)                           | [Live Demo](https://eeoooue.github.io/50projects-dart/auto-text-effect/)              |
+| 31  | [Password Generator](/password-generator/)                       | [Live Demo](https://eeoooue.github.io/50projects-dart/password-generator/)            |
+| 32  | [Good Cheap Fast](/good-cheap-fast/)                             | [Live Demo](https://eeoooue.github.io/50projects-dart/good-cheap-fast/)               |
+| 33  | [Notes App](/notes-app/)                                         | [Live Demo](https://eeoooue.github.io/50projects-dart/notes-app/)                     |
+| 34  | [Animated Countdown](/animated-countdown/)                       | [Live Demo](https://eeoooue.github.io/50projects-dart/animated-countdown/)            |
+| 35  | [Image Carousel](/image-carousel/)                               | [Live Demo](https://eeoooue.github.io/50projects-dart/image-carousel/)                |
+| 36  | [Hoverboard](/hoverboard/)                                       | [Live Demo](https://eeoooue.github.io/50projects-dart/hoverboard/)                    |
+| 37  | [Pokedex](/pokedex/)                                             | [Live Demo](https://eeoooue.github.io/50projects-dart/pokedex/)                       |
+| 38  | [Mobile Tab Navigation](/mobile-tab-navigation/)                 | [Live Demo](https://eeoooue.github.io/50projects-dart/mobile-tab-navigation/)         |
+| 39  | [Password Strength Background](/password-strength-background/)   | [Live Demo](https://eeoooue.github.io/50projects-dart/password-strength-background/)  |
+| 40  | [3d Background Boxes](/3d-boxes-background/)                     | [Live Demo](https://eeoooue.github.io/50projects-dart/3d-background-boxes/)           |
+| 41  | [Verify Account Ui](/verify-account-ui/)                         | [Live Demo](https://eeoooue.github.io/50projects-dart/verify-account-ui/)             |
+| 42  | [Live User Filter](/live-user-filter/)                           | [Live Demo](https://eeoooue.github.io/50projects-dart/live-user-filter/)              |
+| 43  | [Feedback Ui Design](/feedback-ui-design/)                       | [Live Demo](https://eeoooue.github.io/50projects-dart/feedback-ui-design/)            |
+| 44  | [Custom Range Slider](/custom-range-slider/)                     | [Live Demo](https://eeoooue.github.io/50projects-dart/custom-range-slider/)           |
+| 45  | [Netflix Mobile Navigation](/netflix-mobile-navigation/)         | [Live Demo](https://eeoooue.github.io/50projects-dart/netflix-mobile-navigation/)     |
+| 46  | [Quiz App](/quiz-app/)                                           | [Live Demo](https://eeoooue.github.io/50projects-dart/quiz-app/)                      |
+| 47  | [Testimonial Box Switcher](/testimonial-box-switcher/)           | [Live Demo](https://eeoooue.github.io/50projects-dart/testimonial-box-switcher/)      |
+| 48  | [Random Image Feed](/random-image-generator/)                         | [Live Demo](https://eeoooue.github.io/50projects-dart/random-image-generator/)             |
+| 49  | [Todo List](/todo-list/)                                         | [Live Demo](https://eeoooue.github.io/50projects-dart/todo-list/)                     |
+| 50  | [Insect Catch Game](/insect-catch-game/)                         | [Live Demo](https://eeoooue.github.io/50projects-dart/insect-catch-game/)             |
 
-|  #  | Project                                                                                                                     | Live Demo                                                                         |
-| :-: | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| 01  | [Expanding Cards](https://github.com/bradtraversy/50projects50days/tree/master/expanding-cards)                             | [Live Demo](https://50projects50days.com/projects/expanding-cards/)               |
-| 02  | [Progress Steps](https://github.com/bradtraversy/50projects50days/tree/master/progress-steps)                               | [Live Demo](https://50projects50days.com/projects/progress-steps/)                |
-| 03  | [Rotating Navigation Animation](https://github.com/bradtraversy/50projects50days/tree/master/rotating-nav-animation)                       | [Live Demo](https://50projects50days.com/projects/rotating-navigation-animation/) |
-| 04  | [Hidden Search Widget](https://github.com/bradtraversy/50projects50days/tree/master/hidden-search)                          | [Live Demo](https://50projects50days.com/projects/hidden-search-widget/)          |
-| 05  | [Blurry Loading](https://github.com/bradtraversy/50projects50days/tree/master/blurry-loading)                               | [Live Demo](https://50projects50days.com/projects/blurry-loading/)                |
-| 06  | [Scroll Animation](https://github.com/bradtraversy/50projects50days/tree/master/scroll-animation)                           | [Live Demo](https://50projects50days.com/projects/scroll-animation/)              |
-| 07  | [Split Landing Page](https://github.com/bradtraversy/50projects50days/tree/master/split-landing-page)                       | [Live Demo](https://50projects50days.com/projects/split-landing-page/)            |
-| 08  | [Form Wave](https://github.com/bradtraversy/50projects50days/tree/master/form-input-wave)                                         | [Live Demo](https://50projects50days.com/projects/form-wave/)                     |
-| 09  | [Sound Board](https://github.com/bradtraversy/50projects50days/tree/master/sound-board)                                     | [Live Demo](https://50projects50days.com/projects/sound-board/)                   |
-| 10  | [Dad Jokes](https://github.com/bradtraversy/50projects50days/tree/master/dad-jokes)                                         | [Live Demo](https://50projects50days.com/projects/dad-jokes/)                     |
-| 11  | [Event Keycodes](https://github.com/bradtraversy/50projects50days/tree/master/event-keycodes)                               | [Live Demo](https://50projects50days.com/projects/event-keycodes/)                |
-| 12  | [Faq Collapse](https://github.com/bradtraversy/50projects50days/tree/master/faq-collapse)                                   | [Live Demo](https://50projects50days.com/projects/faq-collapse/)                  |
-| 13  | [Random Choice Picker](https://github.com/bradtraversy/50projects50days/tree/master/random-choice-picker)                   | [Live Demo](https://50projects50days.com/projects/random-choice-picker/)          |
-| 14  | [Animated Navigation](https://github.com/bradtraversy/50projects50days/tree/master/animated-navigation)                     | [Live Demo](https://50projects50days.com/projects/animated-navigation/)           |
-| 15  | [Incrementing Counter](https://github.com/bradtraversy/50projects50days/tree/master/incrementing-counter)                   | [Live Demo](https://50projects50days.com/projects/incrementing-counter/)          |
-| 16  | [Drink Water](https://github.com/bradtraversy/50projects50days/tree/master/drink-water)                                     | [Live Demo](https://50projects50days.com/projects/drink-water/)                   |
-| 17  | [Movie App](https://github.com/bradtraversy/50projects50days/tree/master/movie-app)                                         | [Live Demo](https://50projects50days.com/projects/movie-app/)                     |
-| 18  | [Background Slider](https://github.com/bradtraversy/50projects50days/tree/master/background-slider)                         | [Live Demo](https://50projects50days.com/projects/background-slider/)             |
-| 19  | [Theme Clock](https://github.com/bradtraversy/50projects50days/tree/master/theme-clock)                                     | [Live Demo](https://50projects50days.com/projects/theme-clock/)                   |
-| 20  | [Button Ripple Effect](https://github.com/bradtraversy/50projects50days/tree/master/button-ripple-effect)                   | [Live Demo](https://50projects50days.com/projects/button-ripple-effect/)          |
-| 21  | [Drag N Drop](https://github.com/bradtraversy/50projects50days/tree/master/drag-n-drop)                                     | [Live Demo](https://50projects50days.com/projects/drag-n-drop/)                   |
-| 22  | [Drawing App](https://github.com/bradtraversy/50projects50days/tree/master/drawing-app)                                     | [Live Demo](https://50projects50days.com/projects/drawing-app/)                   |
-| 23  | [Kinetic Loader](https://github.com/bradtraversy/50projects50days/tree/master/kinetic-loader)                               | [Live Demo](https://50projects50days.com/projects/kinetic-loader/)                |
-| 24  | [Content Placeholder](https://github.com/bradtraversy/50projects50days/tree/master/content-placeholder)                     | [Live Demo](https://50projects50days.com/projects/content-placeholder/)           |
-| 25  | [Sticky Navbar](https://github.com/bradtraversy/50projects50days/tree/master/sticky-navigation)                                 | [Live Demo](https://50projects50days.com/projects/sticky-navbar/)                 |
-| 26  | [Double Vertical Slider](https://github.com/bradtraversy/50projects50days/tree/master/double-vertical-slider)               | [Live Demo](https://50projects50days.com/projects/double-vertical-slider/)        |
-| 27  | [Toast Notification](https://github.com/bradtraversy/50projects50days/tree/master/toast-notification)                       | [Live Demo](https://50projects50days.com/projects/toast-notification/)            |
-| 28  | [Github Profiles](https://github.com/bradtraversy/50projects50days/tree/master/github-profiles)                             | [Live Demo](https://50projects50days.com/projects/github-profiles/)               |
-| 29  | [Double Click Heart](https://github.com/bradtraversy/50projects50days/tree/master/double-click-heart)                       | [Live Demo](https://50projects50days.com/projects/double-click-heart/)            |
-| 30  | [Auto Text Effect](https://github.com/bradtraversy/50projects50days/tree/master/auto-text-effect)                           | [Live Demo](https://50projects50days.com/projects/auto-text-effect/)              |
-| 31  | [Password Generator](https://github.com/bradtraversy/50projects50days/tree/master/password-generator)                       | [Live Demo](https://50projects50days.com/projects/password-generator/)            |
-| 32  | [Good Cheap Fast](https://github.com/bradtraversy/50projects50days/tree/master/good-cheap-fast)                             | [Live Demo](https://50projects50days.com/projects/good-cheap-fast/)               |
-| 33  | [Notes App](https://github.com/bradtraversy/50projects50days/tree/master/notes-app)                                         | [Live Demo](https://50projects50days.com/projects/notes-app/)                     |
-| 34  | [Animated Countdown](https://github.com/bradtraversy/50projects50days/tree/master/animated-countdown)                       | [Live Demo](https://50projects50days.com/projects/animated-countdown/)            |
-| 35  | [Image Carousel](https://github.com/bradtraversy/50projects50days/tree/master/image-carousel)                               | [Live Demo](https://50projects50days.com/projects/image-carousel/)                |
-| 36  | [Hoverboard](https://github.com/bradtraversy/50projects50days/tree/master/hoverboard)                                       | [Live Demo](https://50projects50days.com/projects/hoverboard/)                    |
-| 37  | [Pokedex](https://github.com/bradtraversy/50projects50days/tree/master/pokedex)                                             | [Live Demo](https://50projects50days.com/projects/pokedex/)                       |
-| 38  | [Mobile Tab Navigation](https://github.com/bradtraversy/50projects50days/tree/master/mobile-tab-navigation)                 | [Live Demo](https://50projects50days.com/projects/mobile-tab-navigation/)         |
-| 39  | [Password Strength Background](https://github.com/bradtraversy/50projects50days/tree/master/password-strength-background)   | [Live Demo](https://50projects50days.com/projects/password-strength-background/)  |
-| 40  | [3d Background Boxes](https://github.com/bradtraversy/50projects50days/tree/master/3d-boxes-background)                     | [Live Demo](https://50projects50days.com/projects/3d-background-boxes/)           |
-| 41  | [Verify Account Ui](https://github.com/bradtraversy/50projects50days/tree/master/verify-account-ui)                         | [Live Demo](https://50projects50days.com/projects/verify-account-ui/)             |
-| 42  | [Live User Filter](https://github.com/bradtraversy/50projects50days/tree/master/live-user-filter)                           | [Live Demo](https://50projects50days.com/projects/live-user-filter/)              |
-| 43  | [Feedback Ui Design](https://github.com/bradtraversy/50projects50days/tree/master/feedback-ui-design)                       | [Live Demo](https://50projects50days.com/projects/feedback-ui-design/)            |
-| 44  | [Custom Range Slider](https://github.com/bradtraversy/50projects50days/tree/master/custom-range-slider)                     | [Live Demo](https://50projects50days.com/projects/custom-range-slider/)           |
-| 45  | [Netflix Mobile Navigation](https://github.com/bradtraversy/50projects50days/tree/master/netflix-mobile-navigation)         | [Live Demo](https://50projects50days.com/projects/netflix-mobile-navigation/)     |
-| 46  | [Quiz App](https://github.com/bradtraversy/50projects50days/tree/master/quiz-app)                                           | [Live Demo](https://50projects50days.com/projects/quiz-app/)                      |
-| 47  | [Testimonial Box Switcher](https://github.com/bradtraversy/50projects50days/tree/master/testimonial-box-switcher)           | [Live Demo](https://50projects50days.com/projects/testimonial-box-switcher/)      |
-| 48  | [Random Image Feed](https://github.com/bradtraversy/50projects50days/tree/master/random-image-generator)                         | [Live Demo](https://50projects50days.com/projects/random-image-feed/)             |
-| 49  | [Todo List](https://github.com/bradtraversy/50projects50days/tree/master/todo-list)                                         | [Live Demo](https://50projects50days.com/projects/todo-list/)                     |
-| 50  | [Insect Catch Game](https://github.com/bradtraversy/50projects50days/tree/master/insect-catch-game)                         | [Live Demo](https://50projects50days.com/projects/insect-catch-game/)             |
-
-**NOTE ON PULL REQUESTS**: All of these projects are part of the course. While I do appreciate people trying to make some things prettier or adding new features, we are only accepting pull requests and looking at issues for bug fixes so that the code stays inline with the course
 
 ## License
 
