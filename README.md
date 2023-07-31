@@ -52,7 +52,7 @@ This is a dart fork of the [```50projects50days```](https://github.com/bradtrave
 | 37  | [Pokedex](/pokedex/)| [Live Demo](https://eeoooue.github.io/50projects-dart/pokedex/)|
 | 38  | [Mobile Tab Navigation](/mobile-tab-navigation/)  | [Live Demo](https://eeoooue.github.io/50projects-dart/mobile-tab-navigation/) |
 | 39  | [Password Strength Background](/password-strength-background/)| [Live Demo](https://eeoooue.github.io/50projects-dart/password-strength-background/)  |
-| 40  | [3d Background Boxes](/3d-boxes-background/) | [Live Demo](https://eeoooue.github.io/50projects-dart/3d-background-boxes/) |
+| 40  | [3D Boxes Background](/3d-boxes-background/) | [Live Demo](https://eeoooue.github.io/50projects-dart/3d-boxes-background/) |
 | 41  | [Verify Account Ui](/verify-account-ui/)| [Live Demo](https://eeoooue.github.io/50projects-dart/verify-account-ui/)|
 | 42  | [Live User Filter](/live-user-filter/)  | [Live Demo](https://eeoooue.github.io/50projects-dart/live-user-filter/) |
 | 43  | [Feedback Ui Design](/feedback-ui-design/)| [Live Demo](https://eeoooue.github.io/50projects-dart/feedback-ui-design/)  |
