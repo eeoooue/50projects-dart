@@ -1,7 +1,15 @@
-# 50 Projects - HTML/CSS and Dart
+# [50 Projects - HTML/CSS and Dart](https://eeoooue.github.io/50projects-dart/)
 
 This is a dart fork of the [```50projects50days```](https://github.com/bradtraversy/50projects50days) repo by [@bradtraversy](https://github.com/bradtraversy).
 
+
+## Quick Start Guide
+
+- Install the [Dart SDK](https://dart.dev/get-dart)
+- Navigate to a project subdirectory
+- Compile any changes using ```dart compile js -o script.js script.dart```
+
+## Overview
 
 |  #  | Project | Live Demo |
 | :-: | ----- | ----- |
